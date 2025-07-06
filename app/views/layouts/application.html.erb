@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Ecommerce App" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.min.css" />
+  </head>
+
+  <body style="min-height: 100vh; background: linear-gradient(135deg, #e0f7fa, #e1bee7); font-family: Arial, sans-serif;">
+
+    <% if user_signed_in? %>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; background-color: #f8f9fa; border-bottom: 1px solid #ddd; font-family: Arial, sans-serif;">
+        
+        <!-- 🔹 Left side -->
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <%= link_to "🏠 MyStore", root_path, style: "font-weight: bold; font-size: 18px; text-decoration: none; color: #2c3e50;" %>
+          <span style="font-size: 15px; color: #555;">👋 Welcome, <%= current_user&.full_name %></span>
+        </div>
+
+        <!-- 🔹 Right side -->
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <%= link_to "Dashboard", dashboard_path, style: "text-decoration: none; color: #3498db; font-size: 14px;" %>
+          <%= link_to "Profile", edit_user_registration_path, style: "text-decoration: none; color: #3498db; font-size: 14px;" %>
+
+          <%= button_to "Logout", destroy_user_session_path, method: :delete,
+                style: "padding: 8px 16px; background-color: #e74c3c; color: white; border: none; border-radius: 5px; font-size: 14px; cursor: pointer;" %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

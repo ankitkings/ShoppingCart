@@ -1,0 +1,48 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div style="color: #e74c3c; background: #ffe6e6; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="display: flex; flex-direction: column; gap: 20px; background: rgba(255, 255, 255, 0.15); padding: 30px; border-radius: 16px; backdrop-filter: blur(10px); max-width: 600px; margin: 0 auto;">
+    <div>
+      <%= form.label :title, style: "display: block; font-weight: bold; color: #222;" %>
+      <%= form.text_field :title, style: "width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" %>
+    </div>
+
+    <div>
+      <%= form.label :description, style: "display: block; font-weight: bold; color: #222;" %>
+      <%= form.text_area :description, rows: 4, style: "width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" %>
+    </div>
+
+    <div>
+      <%= form.label :price, style: "display: block; font-weight: bold; color: #222;" %>
+      <%= form.text_field :price, style: "width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" %>
+    </div>
+
+    <div>
+      <%= form.label :stock, style: "display: block;" %>
+      <%= form.number_field :stock, min: 0, style: "padding: 8px; border-radius: 5px;" %>
+    </div>
+
+    <div>
+      <%= form.label :category_id, "Category", style: "display: block; font-weight: bold; color: #222;" %>
+      <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Select Category", style: "width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" %>
+    </div>
+
+    <div>
+      <%= form.label :image, style: "display: block; font-weight: bold; color: #222;" %>
+      <%= form.file_field :image, style: "width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" %>
+    </div>
+
+    <div>
+      <%= form.submit "Save Product", style: "padding: 12px 20px; background-color: #3498db; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,75 @@
+<div style="max-width: 600px; margin: 40px auto; padding: 30px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 10px; font-family: Arial, sans-serif;">
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <!-- First Name -->
+    <div class="field" style="margin-bottom: 20px;">
+      <%= f.label :first_name, style: "display: block; font-weight: bold;" %>
+      <%= f.text_field :first_name, style: "width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" %>
+    </div>
+
+    <!-- Last Name -->
+    <div class="field" style="margin-bottom: 20px;">
+      <%= f.label :last_name, style: "display: block; font-weight: bold;" %>
+      <%= f.text_field :last_name, style: "width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" %>
+    </div>
+
+    <!-- Mobile -->
+    <div class="field" style="margin-bottom: 20px;">
+      <%= f.label :mobile, "Mobile Number", style: "display: block; font-weight: bold;" %>
+      <%= f.telephone_field :mobile, style: "width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" %>
+    </div>
+
+    <!-- Email -->
+    <div class="field" style="margin-bottom: 20px;">
+      <%= f.label :email, style: "display: block; font-weight: bold;" %>
+      <%= f.email_field :email, autocomplete: "email", style: "width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div style="margin-bottom: 15px; font-size: 14px; color: #555;">
+        Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+      </div>
+    <% end %>
+
+    <!-- Password -->
+    <div class="field" style="margin-bottom: 20px;">
+      <%= f.label :password, style: "display: block; font-weight: bold;" %>
+      <%= f.password_field :password, autocomplete: "new-password", style: "width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" %>
+      <% if @minimum_password_length %>
+        <em style="font-size: 12px; color: #888;"><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="field" style="margin-bottom: 20px;">
+      <%= f.label :password_confirmation, style: "display: block; font-weight: bold;" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" %>
+    </div>
+
+    <!-- Current Password -->
+    <div class="field" style="margin-bottom: 20px;">
+      <%= f.label :current_password, style: "display: block; font-weight: bold;" %>
+      <%= f.password_field :current_password, autocomplete: "current-password", style: "width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" %>
+      <small style="color: #888;">(We need your current password to confirm your changes)</small>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="actions" style="text-align: center;">
+      <%= f.submit "Update", style: "padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;" %>
+    </div>
+  <% end %>
+
+  <hr style="margin: 30px 0;">
+
+  <div style="text-align: center;">
+    <%= button_to "Cancel my account", registration_path(resource_name), method: :delete,
+          data: { confirm: "Are you sure?" },
+          style: "padding: 10px 20px; background-color: #e74c3c; color: white; border: none; border-radius: 6px; cursor: pointer;" %>
+  </div>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <%= link_to "Back", root_path, style: "padding: 10px 20px; background-color: #a28089; color: white; border: none; border-radius: 6px; cursor: pointer;" %>
+  </div>
+</div>

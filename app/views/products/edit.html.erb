@@ -1,0 +1,17 @@
+<% content_for :title, "Editing product" %>
+
+<div style="max-width: 800px; margin: 50px auto; padding: 20px; text-align: left; color: black;">
+  <h1 style="font-size: 36px; margin-bottom: 30px;"> 🔧 Editing product</h1>
+
+  <!-- 🧊 Form Partial -->
+  <%= render "form", product: @product %>
+
+  <br>
+
+  <!-- 🔙 Back Link -->
+  <div>
+    <%= link_to "Show this product", @product, style: "color: #3ff3ff; font-size: 16px; text-decoration: none; margin-top: 20px; display: inline-block;" %>
+    <%= link_to "← Back to Products", products_path,
+          style: "color: #00e6e6; font-size: 16px; text-decoration: none; margin-top: 20px; display: inline-block;" %>
+  </div>
+</div>

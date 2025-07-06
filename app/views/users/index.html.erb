@@ -1,0 +1,35 @@
+<% content_for :title, "All Users" %>
+
+<h1 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">👥 All Users</h1>
+
+<table style="width: 100%; border-collapse: collapse; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+  <thead>
+    <tr style="background-color: #3498db; color: white;">
+      <th style="padding: 10px; text-align: left;">No</th>
+      <th style="padding: 10px; text-align: left;">Full Name</th>
+      <th style="padding: 10px; text-align: left;">Email</th>
+      <th style="padding: 10px; text-align: left;">Mobile</th>
+      <th style="padding: 10px; text-align: left;">Role</th>
+      <th style="padding: 10px; text-align: left; text-align: center;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each_with_index do |user, index| %>
+      <tr style="border-bottom: 1px solid #eee;">
+        <td style="padding: 10px;"><%= index + 1 %></td>
+        <td style="padding: 10px;"><%= user.full_name %></td>
+        <td style="padding: 10px;"><%= user.email %></td>
+        <td style="padding: 10px;"><%= user.mobile %></td>
+        <td style="padding: 10px;"><%= user.role.titleize %></td>
+        <td style="padding: 10px; text-align: center;">
+          <%= link_to "#", style: "color: #2980b9; margin-right: 10px;" do %>
+            <i class="fas fa-pen-to-square"></i>
+          <% end %>
+          <%= button_to "#", method: :delete, data: { confirm: "Are you sure?" }, style: "color: #e74c3c; background: none; border: none;" do %>
+            <i class="fas fa-trash"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
