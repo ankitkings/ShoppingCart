@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "chat_rooms/index"
+  get "chat_rooms/show"
+  get "messages/create"
   get "users/index"
   get "orders/index"
   get "orders/show"
@@ -28,5 +31,8 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboards#show'
   get "orders/:id/receipt", to: "orders#receipt", as: "receipt_order"
 
+  resources :chat_rooms, only: [:index, :show] do
+   resources :messages, only: [:create]
+  end
 
 end

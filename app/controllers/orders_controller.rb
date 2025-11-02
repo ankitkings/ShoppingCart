@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
   def create
     cart = current_user.cart
-    order = current_user.orders.create(status: 'pending', total_amount: cart.cart_items.sum { |i| i.quantity * i.product.price })
+    order = current_user.orders.create(status: 'Pending', total_amount: cart.cart_items.sum { |i| i.quantity * i.product.price })
 
     cart.cart_items.each do |item|
       order.order_items.create(product: item.product, quantity: item.quantity, price: item.product.price)
