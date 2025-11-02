@@ -6,7 +6,7 @@ set -e
 echo "🚀 Starting Rails deployment..."
 
 # Go to app directory
-cd /home/ec2-user/cicd
+cd /home/ec2-user/deploy
 
 # Load environment variables (if using dotenv or system vars)
 export RAILS_ENV=production
