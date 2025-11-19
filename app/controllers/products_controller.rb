@@ -3,8 +3,8 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @categorie = Category.all
-    @selected_category = params[:category].presence
+    @categories = Category.all
+    @selected_categor = params[:category].presence
     @search_query = params[:search]
 
     @products = Product.all
